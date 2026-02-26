@@ -16,7 +16,6 @@ Promise.all(
   document.getElementById('subtitle-text').addEventListener('input', render);
   document.getElementById('font-select').addEventListener('change', render);
   document.getElementById('border-select').addEventListener('change', render);
-  document.getElementById('align-select').addEventListener('change', render);
 
   render(); // initial render
 }).catch(err => console.error('Font load error:', err));
@@ -30,10 +29,9 @@ function render() {
     const subtitle  = document.getElementById('subtitle-text').value;
     const font      = document.getElementById('font-select').value;
     const border    = document.getElementById('border-select').value;
-    const align     = document.getElementById('align-select').value;
     const preview   = document.getElementById('preview');
 
-    generateBanner(mainText, subtitle, font, border, align, result => {
+    generateBanner(mainText, subtitle, font, border, 'left', result => {
       preview.textContent = result;
     });
   }, 150);
