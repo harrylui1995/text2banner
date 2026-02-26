@@ -111,3 +111,23 @@ function generateBanner(mainText, subtitle, font, border, align, callback) {
     callback(result);
   });
 }
+
+// --- Copy to clipboard ---
+
+document.getElementById('copy-btn').addEventListener('click', () => {
+  const text = document.getElementById('preview').textContent;
+  if (!text || text === '← type something above') return;
+
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copy-btn');
+    const original = btn.textContent;
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 1500);
+  }).catch(err => {
+    alert('Copy failed: ' + err.message);
+  });
+});
