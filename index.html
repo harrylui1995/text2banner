@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>text2banner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <span class="logo">text2banner</span>
+    <a class="github-link" href="https://github.com/YOUR_USERNAME/text2banner" target="_blank">GitHub ↗</a>
+  </header>
+
+  <main>
+    <div class="controls">
+      <label>
+        Main text
+        <input type="text" id="main-text" placeholder="your project name" autocomplete="off" />
+      </label>
+      <label>
+        Subtitle
+        <input type="text" id="subtitle-text" placeholder="optional tagline" autocomplete="off" />
+      </label>
+      <div class="selects">
+        <label>
+          Font
+          <select id="font-select">
+            <option value="Big">Big</option>
+            <option value="Standard">Standard</option>
+            <option value="Slant">Slant</option>
+            <option value="Shadow">Shadow</option>
+            <option value="Small">Small</option>
+            <option value="Banner">Banner</option>
+          </select>
+        </label>
+        <label>
+          Border
+          <select id="border-select">
+            <option value="box">Box (╔═╗)</option>
+            <option value="ascii">ASCII (+--+)</option>
+            <option value="none">None</option>
+          </select>
+        </label>
+        <label>
+          Align
+          <select id="align-select">
+            <option value="center">Center</option>
+            <option value="left">Left</option>
+            <option value="right">Right</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <div class="preview-wrapper">
+      <pre id="preview">← type something above</pre>
+    </div>
+
+    <div class="actions">
+      <button id="copy-btn">Copy to clipboard</button>
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/figlet@1.7.0/figlet.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
