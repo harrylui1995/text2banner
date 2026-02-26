@@ -11,12 +11,32 @@ Promise.all(
     figlet.preloadFonts([font], err => err ? reject(err) : resolve());
   }))
 ).then(() => {
-  console.log('All fonts loaded');
-  render(); // initial render once fonts are ready
+  // Wire all controls to render
+  document.getElementById('main-text').addEventListener('input', render);
+  document.getElementById('subtitle-text').addEventListener('input', render);
+  document.getElementById('font-select').addEventListener('change', render);
+  document.getElementById('border-select').addEventListener('change', render);
+  document.getElementById('align-select').addEventListener('change', render);
+
+  render(); // initial render
 }).catch(err => console.error('Font load error:', err));
 
+let debounceTimer = null;
+
 function render() {
-  console.log('render called');
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(() => {
+    const mainText  = document.getElementById('main-text').value;
+    const subtitle  = document.getElementById('subtitle-text').value;
+    const font      = document.getElementById('font-select').value;
+    const border    = document.getElementById('border-select').value;
+    const align     = document.getElementById('align-select').value;
+    const preview   = document.getElementById('preview');
+
+    generateBanner(mainText, subtitle, font, border, align, result => {
+      preview.textContent = result;
+    });
+  }, 150);
 }
 
 // --- Banner generation ---
