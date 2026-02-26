@@ -14,7 +14,7 @@
 
 A lightweight web app to generate ASCII/Unicode banners for CLI tools and GitHub READMEs. No installation needed — just visit the page, type, and copy.
 
-**[Try it live →](https://YOUR_USERNAME.github.io/text2banner/)**
+**[Try it live →](https://harrylui1995.github.io/text2banner/)**
 
 ## Features
 
