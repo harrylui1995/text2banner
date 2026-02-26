@@ -24,11 +24,15 @@ A lightweight web app to generate ASCII/Unicode banners for CLI tools and GitHub
 ## Features
 
 - Live preview as you type
-- 6 figlet font styles (Big, Standard, Slant, Shadow, Small, Banner)
+- 7 figlet font styles (Big, Standard, Slant, Shadow, Small, Banner, ANSI Shadow)
 - 3 border styles (Unicode box, ASCII, none)
 - Subtitle support
 - Left / center / right alignment
 - One-click copy to clipboard
+
+## Built with
+
+Built on [figlet.js](https://github.com/patorjk/figlet.js) for text rendering, with a live-preview UI, border framing, and subtitle support on top.
 
 ## Contributing
 

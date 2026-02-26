@@ -4,7 +4,7 @@ figlet.defaults({
 });
 
 // Preload all fonts used in the select so switching feels instant
-const FONTS = ['Big', 'Standard', 'Slant', 'Shadow', 'Small', 'Banner'];
+const FONTS = ['Big', 'Standard', 'Slant', 'Shadow', 'Small', 'Banner', 'ANSI Shadow'];
 
 Promise.all(
   FONTS.map(font => new Promise((resolve, reject) => {
