@@ -32,7 +32,7 @@ A lightweight web app to generate ASCII/Unicode banners for CLI tools and GitHub
 
 ## Contributing
 
-Clone the repo, open `index.html` in a browser (or run `python -m http.server 8080`). No build step, no npm install.
+Clone the repo, open `index.html` in a browser. No build step, no npm install.
 
 Pull requests welcome — see open issues for ideas.
 
