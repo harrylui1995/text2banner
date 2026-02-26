@@ -16,6 +16,7 @@ Promise.all(
   document.getElementById('subtitle-text').addEventListener('input', render);
   document.getElementById('font-select').addEventListener('change', render);
   document.getElementById('border-select').addEventListener('change', render);
+  document.getElementById('align-select').addEventListener('change', render);
 
   render(); // initial render
 }).catch(err => console.error('Font load error:', err));
@@ -29,9 +30,10 @@ function render() {
     const subtitle  = document.getElementById('subtitle-text').value;
     const font      = document.getElementById('font-select').value;
     const border    = document.getElementById('border-select').value;
+    const align     = document.getElementById('align-select').value;
     const preview   = document.getElementById('preview');
 
-    generateBanner(mainText, subtitle, font, border, 'left', result => {
+    generateBanner(mainText, subtitle, font, border, align, result => {
       preview.textContent = result;
     });
   }, 150);
@@ -52,11 +54,13 @@ const BORDERS = {
  * @param {number} innerWidth - width of content area (excluding border chars)
  * @returns {string}
  */
-function applyBorder(lines, border, align, innerWidth) {
+function applyBorder(lines, border, aligns, innerWidth) {
   const b = BORDERS[border];
 
   // Pad each line to innerWidth based on alignment
-  const padded = lines.map(line => {
+  // aligns can be a single string (apply to all) or an array (per-line)
+  const padded = lines.map((line, i) => {
+    const align = Array.isArray(aligns) ? aligns[i] : aligns;
     const len = line.length;
     const gap = innerWidth - len;
     if (align === 'left')   return line + ' '.repeat(gap);
@@ -105,7 +109,14 @@ function generateBanner(mainText, subtitle, font, border, align, callback) {
     // Inner width = longest line
     const innerWidth = Math.max(...contentLines.map(l => l.length));
 
-    const result = applyBorder(contentLines, border, align, innerWidth);
+    // figlet lines always left-aligned; only the subtitle uses the align control
+    const aligns = figletLines.map(() => 'left');
+    if (subtitle.trim()) {
+      aligns.push('left'); // blank spacer
+      aligns.push(align);  // subtitle line
+    }
+
+    const result = applyBorder(contentLines, border, aligns, innerWidth);
     callback(result);
   });
 }
